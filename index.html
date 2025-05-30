@@ -224,16 +224,20 @@
         
         .packages-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto 3rem;
+        }
+        
+        .package-row {
+            display: contents;
         }
         
         .package-btn {
             background: white;
             border: 2px solid var(--primary);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
@@ -255,7 +259,7 @@
             right: -10px;
             width: 30px;
             height: 30px;
-            background-color: var(--primary);
+            background: var(--primary);
             border-radius: 50%;
             opacity: 0.2;
         }
@@ -267,7 +271,7 @@
             left: -15px;
             width: 40px;
             height: 40px;
-            background-color: var(--secondary);
+            background: var(--secondary);
             border-radius: 50%;
             opacity: 0.2;
         }
@@ -685,6 +689,7 @@
                         <a href="#packages">Monthly Packages</a>
                     </div>
                 </li>
+               
             </ul>
         </div>
     </nav>
@@ -696,7 +701,7 @@
         <a href="#packages" class="btn">View Packages</a>
     </section>
     
-    <hr />
+    <hr>
     
     <!-- Packages Section -->
     <section id="packages" class="packages-section">
@@ -720,28 +725,36 @@
                 <span>7 Days - 10GB</span>
                 <span>Ksh 69</span>
             </button>
-            
-            <!-- Second Row -->
             <button class="package-btn" onclick="showPaymentInstructions('14 Days - 25GB (Ksh 79)')">
                 <span>14 Days - 25GB</span>
                 <span>Ksh 79</span>
             </button>
+            
+            <!-- Second Row -->
             <button class="package-btn" onclick="showPaymentInstructions('30 Days - Unlimited (Ksh 99)')">
                 <span>30 Days - Unlimited</span>
                 <span>Ksh 99</span>
             </button>
-            <button class="package-btn" onclick="showPaymentInstructions('Custom Package')" style="background-color: var(--primary); color: white;">
-                <span>Custom Package</span>
-                <span>Contact Us</span>
+            <button class="package-btn" onclick="showPaymentInstructions('60 Days - Unlimited (Ksh 180)')">
+                <span>60 Days - Unlimited</span>
+                <span>Ksh 180</span>
+            </button>
+            <button class="package-btn" onclick="showPaymentInstructions('90 Days - Unlimited (Ksh 250)')">
+                <span>90 Days - Unlimited</span>
+                <span>Ksh 250</span>
+            </button>
+            <button class="package-btn" onclick="showPaymentInstructions('120 Days - Unlimited (Ksh 320)')">
+                <span>120 Days - Unlimited</span>
+                <span>Ksh 320</span>
             </button>
         </div>
         
         <div class="inquiry">
-            For any inquiries, <a href="#">contact our support team</a>
+            Need a custom package? <a href="mailto:help.starnet2@gmail.com">Contact us</a> for special requests.
         </div>
     </section>
     
-    <hr />
+    <hr>
     
     <!-- Reviews Section -->
     <section class="reviews">
@@ -794,7 +807,7 @@
         </div>
     </section>
     
-    <hr />
+    <hr>
     
     <!-- Why Choose Us Section -->
     <section class="why-choose">
@@ -914,52 +927,52 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show payment instructions modal
-            function showPaymentInstructions(packageName) {
-                const modal = document.getElementById('paymentModal');
-                document.getElementById('selectedPackage').textContent = packageName;
-                modal.style.display = 'flex';
-                
-                // Reset animation
-                const modalContent = modal.querySelector('.modal-content');
-                modalContent.style.animation = 'none';
-                setTimeout(() => {
-                    modalContent.style.animation = 'modalOpen 0.3s forwards';
-                }, 10);
-            }
+        // Show payment instructions modal
+        function showPaymentInstructions(packageName) {
+            const modal = document.getElementById('paymentModal');
+            document.getElementById('selectedPackage').textContent = packageName;
+            modal.style.display = 'flex';
             
-            // Close modal
-            function closeModal() {
-                document.getElementById('paymentModal').style.display = 'none';
-            }
+            // Reset animation
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.style.animation = 'none';
+            setTimeout(() => {
+                modalContent.style.animation = 'modalOpen 0.3s forwards';
+            }, 10);
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+        
+        // Copy till number to clipboard
+        function copyTillNumber() {
+            const tillNumber = document.getElementById('tillNumber').textContent;
+            navigator.clipboard.writeText(tillNumber).then(() => {
+                showToast();
+            });
+        }
+        
+        // Show toast notification
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
             
-            // Copy till number to clipboard
-            function copyTillNumber() {
-                const tillNumber = document.getElementById('tillNumber').textContent;
-                navigator.clipboard.writeText(tillNumber).then(() => {
-                    showToast();
-                });
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('paymentModal')) {
+                closeModal();
             }
-            
-            // Show toast notification
-            function showToast() {
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
-            }
-            
-            // Close modal when clicking outside
-            window.onclick = function(event) {
-                if (event.target == document.getElementById('paymentModal')) {
-                    closeModal();
-                }
-            }
-            
-            // Add animation to package buttons on page load
+        }
+        
+        // Add animation to package buttons on page load
+        document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.package-btn');
             buttons.forEach((btn, index) => {
                 setTimeout(() => {
