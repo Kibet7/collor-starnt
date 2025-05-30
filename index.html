@@ -721,8 +721,21 @@
         
         @media (max-width: 480px) {
             .packages-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr); /* Changed from 1fr to repeat(2, 1fr) */
                 max-width: 300px;
+                gap: 0.8rem; /* Added gap for better spacing */
+            }
+            
+            .package-btn {
+                padding: 0.8rem 0.3rem; /* Adjusted padding for smaller screens */
+            }
+            
+            .package-btn span:first-child {
+                font-size: 0.8rem; /* Slightly smaller font for mobile */
+            }
+            
+            .package-btn span:last-child {
+                font-size: 1rem; /* Slightly smaller font for mobile */
             }
             
             .modal-content {
