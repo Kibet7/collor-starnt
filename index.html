@@ -224,16 +224,16 @@
         
         .packages-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto 3rem;
         }
         
         .package-btn {
             background: white;
-            border: none;
-            border-radius: 10px;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
@@ -244,11 +244,38 @@
             transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-btn::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+        
+        .package-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.2;
         }
         
         .package-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
         }
         
         .package-btn span:first-child {
@@ -623,12 +650,19 @@
             }
             
             .packages-container {
-                grid-template-columns: 1fr;
-                max-width: 300px;
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 500px;
             }
             
             .section-title h2 {
                 font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .packages-container {
+                grid-template-columns: 1fr;
+                max-width: 300px;
             }
         }
     </style>
@@ -651,7 +685,6 @@
                         <a href="#packages">Monthly Packages</a>
                     </div>
                 </li>
-               
             </ul>
         </div>
     </nav>
@@ -663,7 +696,7 @@
         <a href="#packages" class="btn">View Packages</a>
     </section>
     
-    <hr>
+    <hr />
     
     <!-- Packages Section -->
     <section id="packages" class="packages-section">
@@ -674,6 +707,7 @@
         <div class="payment-info">Affordable Internet Packages <i>(Available on all networks)</i></div>
         
         <div class="packages-container">
+            <!-- First Row -->
             <button class="package-btn" onclick="showPaymentInstructions('1 Day - 2GB (Ksh 49)')">
                 <span>1 Day - 2GB</span>
                 <span>Ksh 49</span>
@@ -686,6 +720,8 @@
                 <span>7 Days - 10GB</span>
                 <span>Ksh 69</span>
             </button>
+            
+            <!-- Second Row -->
             <button class="package-btn" onclick="showPaymentInstructions('14 Days - 25GB (Ksh 79)')">
                 <span>14 Days - 25GB</span>
                 <span>Ksh 79</span>
@@ -694,10 +730,18 @@
                 <span>30 Days - Unlimited</span>
                 <span>Ksh 99</span>
             </button>
+            <button class="package-btn" onclick="showPaymentInstructions('Custom Package')" style="background-color: var(--primary); color: white;">
+                <span>Custom Package</span>
+                <span>Contact Us</span>
+            </button>
+        </div>
+        
+        <div class="inquiry">
+            For any inquiries, <a href="#">contact our support team</a>
         </div>
     </section>
     
-    <hr>
+    <hr />
     
     <!-- Reviews Section -->
     <section class="reviews">
@@ -750,7 +794,7 @@
         </div>
     </section>
     
-    <hr>
+    <hr />
     
     <!-- Why Choose Us Section -->
     <section class="why-choose">
@@ -857,7 +901,7 @@
             <div class="footer-column">
                 <h3>Contact Info</h3>
                 <ul class="footer-links">
-                    <li><i class="fas fa-envelope"></i> starnethelpline@gmail.com</li>
+                    <li><i class="fas fa-envelope"></i> help.starnet2@gmail.com</li>
                     <li><i class="fas fa-clock"></i> Support: 24/7</li>
                     <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
                 </ul>
@@ -870,52 +914,52 @@
     </footer>
 
     <script>
-        // Show payment instructions modal
-        function showPaymentInstructions(packageName) {
-            const modal = document.getElementById('paymentModal');
-            document.getElementById('selectedPackage').textContent = packageName;
-            modal.style.display = 'flex';
-            
-            // Reset animation
-            const modalContent = modal.querySelector('.modal-content');
-            modalContent.style.animation = 'none';
-            setTimeout(() => {
-                modalContent.style.animation = 'modalOpen 0.3s forwards';
-            }, 10);
-        }
-        
-        // Close modal
-        function closeModal() {
-            document.getElementById('paymentModal').style.display = 'none';
-        }
-        
-        // Copy till number to clipboard
-        function copyTillNumber() {
-            const tillNumber = document.getElementById('tillNumber').textContent;
-            navigator.clipboard.writeText(tillNumber).then(() => {
-                showToast();
-            });
-        }
-        
-        // Show toast notification
-        function showToast() {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('paymentModal')) {
-                closeModal();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show payment instructions modal
+            function showPaymentInstructions(packageName) {
+                const modal = document.getElementById('paymentModal');
+                document.getElementById('selectedPackage').textContent = packageName;
+                modal.style.display = 'flex';
+                
+                // Reset animation
+                const modalContent = modal.querySelector('.modal-content');
+                modalContent.style.animation = 'none';
+                setTimeout(() => {
+                    modalContent.style.animation = 'modalOpen 0.3s forwards';
+                }, 10);
             }
-        }
-        
-        // Add animation to package buttons on page load
-        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Close modal
+            function closeModal() {
+                document.getElementById('paymentModal').style.display = 'none';
+            }
+            
+            // Copy till number to clipboard
+            function copyTillNumber() {
+                const tillNumber = document.getElementById('tillNumber').textContent;
+                navigator.clipboard.writeText(tillNumber).then(() => {
+                    showToast();
+                });
+            }
+            
+            // Show toast notification
+            function showToast() {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                if (event.target == document.getElementById('paymentModal')) {
+                    closeModal();
+                }
+            }
+            
+            // Add animation to package buttons on page load
             const buttons = document.querySelectorAll('.package-btn');
             buttons.forEach((btn, index) => {
                 setTimeout(() => {
