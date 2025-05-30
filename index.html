@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarNet Kenya - Affordable Internet Packages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff5e62;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, rgba(106, 17, 203, 0.1), rgba(106, 17, 203, 0.5), rgba(106, 17, 203, 0.1));
+            margin: 2rem 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem 5%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9)), url('https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 5%;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Packages Section */
+        .packages-section {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .company-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .company-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-right: 1rem;
+        }
+        
+        .satellite {
+            font-size: 2rem;
+        }
+        
+        .payment-info {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .payment-info i {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+        }
+        
+        .package-btn {
+            background: white;
+            border: none;
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .package-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .package-btn span:first-child {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .package-btn span:last-child {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .inquiry {
+            margin-top: 2rem;
+            color: var(--gray);
+        }
+        
+        .inquiry a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .inquiry a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Reviews Section */
+        .reviews {
+            padding: 4rem 5%;
+            background-color: #f8f9fa;
+        }
+        
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stars {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .reviewer {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .reviewer-title {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+        
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.03), rgba(37, 117, 252, 0.03));
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            position: relative;
+            animation: modalOpen 0.3s forwards;
+        }
+        
+        @keyframes modalOpen {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .close-modal:hover {
+            color: var(--dark);
+        }
+        
+        .instructions {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .instructions ol {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+        
+        .till-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #eee;
+        }
+        
+        .till-label {
+            font-weight: 600;
+        }
+        
+        .till-number {
+            display: flex;
+            align-items: center;
+        }
+        
+        .till-number span {
+            font-weight: 700;
+            margin-right: 1rem;
+            color: var(--primary);
+        }
+        
+        .copy-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn i {
+            margin-right: 0.3rem;
+        }
+        
+        .proceed-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .proceed-btn i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .toast i {
+            margin-right: 0.5rem;
+            color: #4CAF50;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 5% 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-column p {
+            margin-bottom: 1rem;
+            color: #adb5bd;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a, .footer-links li {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a:hover, .footer-links li:hover {
+            color: white;
+        }
+        
+        .footer-links i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .company-header h1 {
+                font-size: 2rem;
+            }
+            
+            .packages-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="navbar">
+            <a href="#" class="logo">
+                <i class="fas fa-rocket"></i>
+                StarNet Kenya
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Packages <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#packages">Daily Packages</a>
+                        <a href="#packages">Weekly Packages</a>
+                        <a href="#packages">Monthly Packages</a>
+                    </div>
+                </li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Affordable Internet Packages</h1>
+        <p>Get high-speed internet at the most competitive prices in Kenya. Available on all networks with instant activation.</p>
+        <a href="#packages" class="btn">View Packages</a>
+    </section>
+    
+    <hr>
+    
+    <!-- Packages Section -->
+    <section id="packages" class="packages-section">
+        <div class="company-header">
+            <h1>STARNET KENYA</h1>
+            <div class="satellite">🛰️</div>
+        </div>
+        <div class="payment-info">Affordable Internet Packages <i>(Available on all networks)</i></div>
+        
+        <div class="packages-container">
+            <button class="package-btn" onclick="showPaymentInstructions('1 Day - 2GB (Ksh 49)')">
+                <span>1 Day - 2GB</span>
+                <span>Ksh 49</span>
+            </button>
+            <button class="package-btn" onclick="showPaymentInstructions('3 Days - 5GB (Ksh 59)')">
+                <span>3 Days - 5GB</span>
+                <span>Ksh 59</span>
+            </button>
+            <button class="package-btn" onclick="showPaymentInstructions('7 Days - 10GB (Ksh 69)')">
+                <span>7 Days - 10GB</span>
+                <span>Ksh 69</span>
+            </button>
+            <button class="package-btn" onclick="showPaymentInstructions('14 Days - 25GB (Ksh 79)')">
+                <span>14 Days - 25GB</span>
+                <span>Ksh 79</span>
+            </button>
+            <button class="package-btn" onclick="showPaymentInstructions('30 Days - Unlimited (Ksh 99)')">
+                <span>30 Days - Unlimited</span>
+                <span>Ksh 99</span>
+            </button>
+        </div>
+
+
+    </section>
+    
+    <hr>
+    
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="section-title">
+            <h2>What Our Customers Say</h2>
+        </div>
+        
+        <div class="reviews-container">
+            <!-- Review 1 -->
+            <div class="review-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"I've been using StarNet for my daily internet needs and it's been reliable and affordable. The 1 Day package is perfect for my usage."</p>
+                <div class="reviewer">Sarah Wanjiku</div>
+                <div class="reviewer-title">University Student</div>
+            </div>
+            
+            <!-- Review 2 -->
+            <div class="review-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"The unlimited monthly package has transformed my small business. I can now video call clients without worrying about data."</p>
+                <div class="reviewer">Michael Otieno</div>
+                <div class="reviewer-title">Small Business Owner</div>
+            </div>
+            
+            <!-- Review 3 -->
+            <div class="review-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"As a content creator, the 14 Days package gives me enough data at an unbeatable price. Activation is instant too!"</p>
+                <div class="reviewer">Amina Mohammed</div>
+                <div class="reviewer-title">Content Creator</div>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <!-- Why Choose Us Section -->
+    <section class="why-choose">
+        <div class="section-title">
+            <h2>Why Choose StarNet Kenya</h2>
+        </div>
+        
+        <div class="features">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Fast Speeds</h3>
+                <p>Enjoy high-speed internet connectivity across all networks in Kenya with our optimized packages.</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3>Affordable Rates</h3>
+                <p>Our packages offer the best value for money with competitive pricing and generous data allocations.</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Instant Activation</h3>
+                <p>Get connected within minutes after payment confirmation. No long waiting periods.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Payment Instructions Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Payment Instructions</h2>
+            <p id="selectedPackage" style="font-weight: bold; color: var(--primary); text-align: center; margin-bottom: 15px;"></p>
+            <div class="instructions">
+                <h3>How to pay via M-Pesa</h3>
+                
+                <div class="till-container">
+                    <div class="till-label">M-Pesa Till Number:</div>
+                    <div class="till-number">
+                        <span id="tillNumber">3487420</span>
+                        <button class="copy-btn" onclick="copyTillNumber()">
+                            <i class="far fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+                
+                <ol>
+                    <li>Go to <strong>M-Pesa</strong> on your phone</li>
+                    <li>Select <strong>Lipa na M-Pesa</strong></li>
+                    <li>Choose <strong>Buy Goods and Services</strong></li>
+                    <li>Enter Till Number: <strong>3487420</strong></li>
+                    <li>Input the exact amount for your package</li>
+                    <li>Enter your <strong>M-Pesa PIN</strong></li>
+                    <li>Confirm payment details and send</li>
+                    <li>Wait for confirmation SMS</li>
+                    <li>Your package activates within 5 minutes</li>
+                </ol>
+                
+                <p style="margin-top: 15px; font-style: italic; color: #666;">
+                    <i class="fas fa-info-circle" style="color: var(--primary);"></i> 
+                    If any issues occur, contact support with your payment confirmation message.
+                </p>
+            </div>
+            <button class="proceed-btn" onclick="closeModal()">
+                <i class="fas fa-check"></i> Understood
+            </button>
+        </div>
+    </div>
+    
+    <!-- Toast notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span>Till number copied to clipboard!</span>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>StarNet Kenya</h3>
+                <p>Providing affordable and reliable internet packages across Kenya since 2020. Connecting you to what matters most.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#packages">Packages</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-envelope"></i> help.starnet2@gmail.com</li>
+                    <li><i class="fas fa-clock"></i> Support: 24/7</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 StarNet Kenya. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Show payment instructions modal
+        function showPaymentInstructions(packageName) {
+            const modal = document.getElementById('paymentModal');
+            document.getElementById('selectedPackage').textContent = packageName;
+            modal.style.display = 'flex';
+            
+            // Reset animation
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.style.animation = 'none';
+            setTimeout(() => {
+                modalContent.style.animation = 'modalOpen 0.3s forwards';
+            }, 10);
+        }
+        
+        // Close modal
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+        
+        // Copy till number to clipboard
+        function copyTillNumber() {
+            const tillNumber = document.getElementById('tillNumber').textContent;
+            navigator.clipboard.writeText(tillNumber).then(() => {
+                showToast();
+            });
+        }
+        
+        // Show toast notification
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('paymentModal')) {
+                closeModal();
+            }
+        }
+        
+        // Add animation to package buttons on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.package-btn');
+            buttons.forEach((btn, index) => {
+                setTimeout(() => {
+                    btn.style.opacity = '1';
+                    btn.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
