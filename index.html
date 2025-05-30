@@ -224,9 +224,9 @@
         
         .packages-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1000px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 600px;
             margin: 0 auto 3rem;
         }
         
@@ -237,8 +237,8 @@
         .package-btn {
             background: white;
             border: 2px solid var(--primary);
-            border-radius: 20px;
-            padding: 1.5rem;
+            border-radius: 15px;
+            padding: 1.2rem 0.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -283,14 +283,14 @@
         }
         
         .package-btn span:first-child {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--dark);
         }
         
         .package-btn span:last-child {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--primary);
         }
@@ -420,9 +420,12 @@
             border-radius: 15px;
             width: 90%;
             max-width: 500px;
+            max-height: 90vh;
             padding: 2rem;
             position: relative;
             animation: modalOpen 0.3s forwards;
+            display: flex;
+            flex-direction: column;
         }
         
         @keyframes modalOpen {
@@ -454,6 +457,8 @@
             padding: 1.5rem;
             border-radius: 10px;
             margin: 1.5rem 0;
+            overflow-y: auto;
+            flex-grow: 1;
         }
         
         .instructions h3 {
@@ -529,6 +534,45 @@
         
         .proceed-btn i {
             margin-right: 0.5rem;
+        }
+        
+        /* Collapsible instructions */
+        .collapsible {
+            background-color: #f8f9fa;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 1rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-weight: bold;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .collapsible:after {
+            content: '\002B';
+            color: var(--primary);
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .collapsible.active:after {
+            content: "\2212";
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f8f9fa;
+            border-radius: 0 0 8px 8px;
         }
         
         /* Toast Notification */
@@ -661,12 +705,33 @@
             .section-title h2 {
                 font-size: 1.8rem;
             }
+            
+            .package-btn {
+                padding: 1rem 0.5rem;
+            }
+            
+            .package-btn span:first-child {
+                font-size: 0.9rem;
+            }
+            
+            .package-btn span:last-child {
+                font-size: 1.1rem;
+            }
         }
         
         @media (max-width: 480px) {
             .packages-container {
                 grid-template-columns: 1fr;
                 max-width: 300px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+            
+            .instructions {
+                padding: 1rem;
             }
         }
     </style>
@@ -712,7 +777,7 @@
         <div class="payment-info">Affordable Internet Packages <i>(Available on all networks)</i></div>
         
         <div class="packages-container">
-            <!-- First Row -->
+            <!-- First Column -->
             <button class="package-btn" onclick="showPaymentInstructions('1 Day - 2GB (Ksh 49)')">
                 <span>1 Day - 2GB</span>
                 <span>Ksh 49</span>
@@ -730,7 +795,7 @@
                 <span>Ksh 79</span>
             </button>
             
-            <!-- Second Row -->
+            <!-- Second Column -->
             <button class="package-btn" onclick="showPaymentInstructions('30 Days - Unlimited (Ksh 99)')">
                 <span>30 Days - Unlimited</span>
                 <span>Ksh 99</span>
@@ -851,36 +916,40 @@
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h2>Payment Instructions</h2>
             <p id="selectedPackage" style="font-weight: bold; color: var(--primary); text-align: center; margin-bottom: 15px;"></p>
-            <div class="instructions">
-                <h3>How to pay via M-Pesa</h3>
-                
-                <div class="till-container">
-                    <div class="till-label">M-Pesa Till Number:</div>
-                    <div class="till-number">
-                        <span id="tillNumber">3487420</span>
-                        <button class="copy-btn" onclick="copyTillNumber()">
-                            <i class="far fa-copy"></i> Copy
-                        </button>
-                    </div>
+            
+            <div class="till-container">
+                <div class="till-label">M-Pesa Till Number:</div>
+                <div class="till-number">
+                    <span id="tillNumber">3487420</span>
+                    <button class="copy-btn" onclick="copyTillNumber()">
+                        <i class="far fa-copy"></i> Copy
+                    </button>
                 </div>
-                
-                <ol>
-                    <li>Go to <strong>M-Pesa</strong> on your phone</li>
-                    <li>Select <strong>Lipa na M-Pesa</strong></li>
-                    <li>Choose <strong>Buy Goods and Services</strong></li>
-                    <li>Enter Till Number: <strong>3487420</strong></li>
-                    <li>Input the exact amount for your package</li>
-                    <li>Enter your <strong>M-Pesa PIN</strong></li>
-                    <li>Confirm payment details and send</li>
-                    <li>Wait for confirmation SMS</li>
-                    <li>Your package activates within 5 minutes</li>
-                </ol>
-                
-                <p style="margin-top: 15px; font-style: italic; color: #666;">
-                    <i class="fas fa-info-circle" style="color: var(--primary);"></i> 
-                    If any issues occur, contact support with your payment confirmation message.
-                </p>
             </div>
+            
+            <button class="collapsible" onclick="toggleCollapsible()">Show Payment Instructions</button>
+            <div class="collapsible-content" id="instructionsContent">
+                <div class="instructions">
+                    <h3>How to pay via M-Pesa</h3>
+                    <ol>
+                        <li>Go to <strong>M-Pesa</strong> on your phone</li>
+                        <li>Select <strong>Lipa na M-Pesa</strong></li>
+                        <li>Choose <strong>Buy Goods and Services</strong></li>
+                        <li>Enter Till Number: <strong>3487420</strong></li>
+                        <li>Input the exact amount for your package</li>
+                        <li>Enter your <strong>M-Pesa PIN</strong></li>
+                        <li>Confirm payment details and send</li>
+                        <li>Wait for confirmation SMS</li>
+                        <li>Your package activates within 5 minutes</li>
+                    </ol>
+                    
+                    <p style="margin-top: 15px; font-style: italic; color: #666;">
+                        <i class="fas fa-info-circle" style="color: var(--primary);"></i> 
+                        If any issues occur, contact support with your payment confirmation message.
+                    </p>
+                </div>
+            </div>
+            
             <button class="proceed-btn" onclick="closeModal()">
                 <i class="fas fa-check"></i> Understood
             </button>
@@ -939,6 +1008,36 @@
             setTimeout(() => {
                 modalContent.style.animation = 'modalOpen 0.3s forwards';
             }, 10);
+            
+            // Collapse instructions by default on mobile
+            if (window.innerWidth <= 768) {
+                const content = document.getElementById('instructionsContent');
+                content.style.maxHeight = '0';
+                const collapsible = document.querySelector('.collapsible');
+                collapsible.classList.remove('active');
+                collapsible.innerHTML = 'Show Payment Instructions <span style="float:right;">+</span>';
+            } else {
+                // Expand by default on desktop
+                const content = document.getElementById('instructionsContent');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                const collapsible = document.querySelector('.collapsible');
+                collapsible.classList.add('active');
+                collapsible.innerHTML = 'Hide Payment Instructions <span style="float:right;">−</span>';
+            }
+        }
+        
+        // Toggle collapsible instructions
+        function toggleCollapsible() {
+            const collapsible = document.querySelector('.collapsible');
+            collapsible.classList.toggle('active');
+            const content = document.getElementById('instructionsContent');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                collapsible.innerHTML = 'Show Payment Instructions <span style="float:right;">+</span>';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                collapsible.innerHTML = 'Hide Payment Instructions <span style="float:right;">−</span>';
+            } 
         }
         
         // Close modal
