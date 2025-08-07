@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6a11cb;
-            --secondary: #2575fc;
-            --accent: #ff5e62;
+            --primary: #2a5f8a;      /* Deep blue */
+            --secondary: #3a9bd9;    /* Sky blue */
+            --accent: #f7931e;       /* Orange */
             --light: #f8f9fa;
             --dark: #212529;
             --gray: #6c757d;
@@ -31,7 +31,7 @@
         hr {
             border: 0;
             height: 1px;
-            background: linear-gradient(to right, rgba(106, 17, 203, 0.1), rgba(106, 17, 203, 0.5), rgba(106, 17, 203, 0.1));
+            background: linear-gradient(to right, rgba(42, 95, 138, 0.1), rgba(42, 95, 138, 0.5), rgba(42, 95, 138, 0.1));
             margin: 2rem 5%;
         }
         
@@ -151,7 +151,7 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9)), url('https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+            background: linear-gradient(135deg, rgba(42, 95, 138, 0.9), rgba(58, 155, 217, 0.9)), url('https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
             background-size: cover;
             background-position: center;
             color: white;
@@ -362,7 +362,7 @@
         /* Why Choose Us Section */
         .why-choose {
             padding: 4rem 5%;
-            background: linear-gradient(135deg, rgba(106, 17, 203, 0.03), rgba(37, 117, 252, 0.03));
+            background: linear-gradient(135deg, rgba(42, 95, 138, 0.03), rgba(58, 155, 217, 0.03));
         }
         
         .features {
@@ -721,21 +721,21 @@
         
         @media (max-width: 480px) {
             .packages-container {
-                grid-template-columns: repeat(2, 1fr); /* Changed from 1fr to repeat(2, 1fr) */
+                grid-template-columns: repeat(2, 1fr);
                 max-width: 300px;
-                gap: 0.8rem; /* Added gap for better spacing */
+                gap: 0.8rem;
             }
             
             .package-btn {
-                padding: 0.8rem 0.3rem; /* Adjusted padding for smaller screens */
+                padding: 0.8rem 0.3rem;
             }
             
             .package-btn span:first-child {
-                font-size: 0.8rem; /* Slightly smaller font for mobile */
+                font-size: 0.8rem;
             }
             
             .package-btn span:last-child {
-                font-size: 1rem; /* Slightly smaller font for mobile */
+                font-size: 1rem;
             }
             
             .modal-content {
@@ -767,15 +767,16 @@
                         <a href="#packages">Monthly Packages</a>
                     </div>
                 </li>
-               
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#why-choose">Why Us</a></li>
             </ul>
         </div>
     </nav>
     
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Affordable Internet Packages</h1>
-        <p>Get high-speed internet at the most competitive prices in Kenya. Available on all networks with instant activation.</p>
+        <h1>Superfast Internet at Unbeatable Prices</h1>
+        <p>Experience reliable high-speed internet across Kenya with our affordable packages. Instant activation on all networks.</p>
         <a href="#packages" class="btn">View Packages</a>
     </section>
     
@@ -827,12 +828,15 @@
             </button>
         </div>     
 
+        <div class="inquiry">
+            Need help? <a href="mailto:starnethelpline@gmail.com">Contact our support team</a>
+        </div>
     </section>
     
     <hr>
     
     <!-- Reviews Section -->
-    <section class="reviews">
+    <section class="reviews" id="reviews">
         <div class="section-title">
             <h2>What Our Customers Say</h2>
         </div>
@@ -873,9 +877,9 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
                 </div>
-                <p class="review-text">"As a content creator, the 14 Days package gives me enough data at an unbeatable price. Activation is instant too!"</p>
+                <p class="review-text">"Great service overall! The speeds are consistent and the prices can't be beat. Customer support is responsive when needed."</p>
                 <div class="reviewer">Amina Mohammed</div>
                 <div class="reviewer-title">Content Creator</div>
             </div>
@@ -885,7 +889,7 @@
     <hr>
     
     <!-- Why Choose Us Section -->
-    <section class="why-choose">
+    <section class="why-choose" id="why-choose">
         <div class="section-title">
             <h2>Why Choose StarNet Kenya</h2>
         </div>
@@ -916,6 +920,15 @@
                 </div>
                 <h3>Instant Activation</h3>
                 <p>Get connected within minutes after payment confirmation. No long waiting periods.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Support</h3>
+                <p>Our dedicated support team is available round the clock to assist with any issues.</p>
             </div>
         </div>
     </section>
@@ -978,6 +991,11 @@
             <div class="footer-column">
                 <h3>StarNet Kenya</h3>
                 <p>Providing affordable and reliable internet packages across Kenya since 2020. Connecting you to what matters most.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="#" style="color: var(--accent); font-size: 1.5rem; margin-right: 1rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: var(--accent); font-size: 1.5rem; margin-right: 1rem;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: var(--accent); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
             
             <div class="footer-column">
@@ -985,15 +1003,16 @@
                 <ul class="footer-links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#packages">Packages</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#why-choose">Why Choose Us</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
                 <h3>Contact Info</h3>
                 <ul class="footer-links">
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:starnethelpline@gmail.com">Contact us</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:starnethelpline@gmail.com">starnethelpline@gmail.com</a></li>
+                    <li><i class="fas fa-phone"></i> +254 700 123456</li>
                     <li><i class="fas fa-clock"></i> Support: 24/7</li>
                     <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
                 </ul>
